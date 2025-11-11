@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
-export default function Chat({ user }) {
+export default function Chat() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [sessionId, setSessionId] = useState(uuidv4());
 
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -56,7 +54,7 @@ export default function Chat({ user }) {
       ]);
     }
   };
-  const getAllChatHistory = async () => {
+  const getAllChatHistory = useCallback(async () => {
     try {
       let url = "https://chatbotbackend-3x52.onrender.com";
       // let url='http://localhost:5000'
@@ -79,13 +77,13 @@ export default function Chat({ user }) {
     } catch (err) {
       console.log(err, "error");
     }
-  };
+  }, [userData]);
 
   useEffect(() => {
     if (userData) {
       getAllChatHistory();
     }
-  }, []);
+  }, [userData, getAllChatHistory]);
 
   return (
     <div style={styles.container}>

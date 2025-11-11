@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function AppLayout() {
   const navigate = useNavigate();
@@ -55,5 +54,3 @@ const styles = {
 };
 
 export default AppLayout;
-
-
