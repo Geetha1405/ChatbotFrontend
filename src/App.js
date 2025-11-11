@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Chat from "./components/chat";
-import Login from "./components/login";
 
 export default function App() {
   const [user, setUser] = useState(null);
